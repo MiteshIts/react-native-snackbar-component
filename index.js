@@ -217,23 +217,19 @@ const styles = StyleSheet.create({
     fontSize: 14,
     flex: 1,
     textAlign: 'left',
-    paddingStart: 20,
+    paddingStart: 0,
     paddingTop: 14,
     paddingBottom: 14,
   },
   beforeTextImage: {
     width: 24, 
     height: 24, 
-    marginEnd: 10, 
-    paddingTop: 14,
-    paddingBottom: 14,
+  
   },
   actionImage: {
     width: 24, 
     height: 24, 
-    marginEnd: 20,
-    paddingTop: 14,
-    paddingBottom: 14,
+
   },
 });
 
