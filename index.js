@@ -218,8 +218,8 @@ const styles = StyleSheet.create({
     flex: 1,
     textAlign: 'left',
     paddingStart: 0,
-    paddingTop: 14,
-    paddingBottom: 14,
+    paddingTop: 12,
+    paddingBottom: 12,
   },
   beforeTextImage: {
     width: 24, 
