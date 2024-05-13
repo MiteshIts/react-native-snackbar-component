@@ -6,6 +6,7 @@ import {
   Animated,
   Easing,
   ViewPropTypes,
+  Image
 } from 'react-native';
 import { Touchable } from './src';
 
@@ -63,6 +64,12 @@ class SnackbarComponent extends Component {
           ]}
           onLayout={event => this.setState({ hideDistance: event.nativeEvent.layout.height })}
         >
+           {this.props.beforeTextImage && (
+           <Image
+           source={this.props.beforeTextImage}
+           style={[styles.beforeTextImage, this.props.beforeTextImageStyle]} // Apply passed styles
+         />
+        )}
           {typeof this.props.textMessage === 'function'
             ? this.props.textMessage()
             : (
@@ -77,18 +84,13 @@ class SnackbarComponent extends Component {
               </Text>
             )
           }
-          {this.props.actionHandler !== null && !!this.props.actionText
+           {this.props.actionHandler !== null && !!this.props.actionImage
             ? (
               <Touchable onPress={this.props.actionHandler}>
-                <Text
-                  style={[
-                    this.props.actionStyle,
-                    styles.actionText,
-                    { color: this.props.accentColor },
-                  ]}
-                >
-                  {this.props.actionText.toUpperCase()}
-                </Text>
+                  <Image
+                source={this.props.actionImage}
+                style={[styles.actionImage, this.props.actionImageStyle]} // Apply passed styles
+              />
               </Touchable>
             )
             : null
@@ -167,7 +169,7 @@ SnackbarComponent.defaultProps = {
   bottom: 0,
   visible: false,
   position: 'bottom',
-  actionText: '',
+  actionImage: null,
   textMessage: '',
   autoHidingTime: 0, // Default value will not auto hide the snack bar as the old version.
   containerStyle: {},
@@ -186,7 +188,7 @@ SnackbarComponent.propTypes = {
   top: PropTypes.number,
   bottom: PropTypes.number,
   visible: PropTypes.bool,
-  actionText: PropTypes.string,
+  actionImage: PropTypes.node,
   textMessage: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   position: PropTypes.oneOf(['bottom', 'top']), // bottom (default), top
   // eslint-disable-next-line react/no-unused-prop-types
@@ -219,10 +221,17 @@ const styles = StyleSheet.create({
     paddingTop: 14,
     paddingBottom: 14,
   },
-  actionText: {
-    fontSize: 14,
-    fontWeight: '600',
-    paddingEnd: 20,
+  beforeTextImage: {
+    width: 24, 
+    height: 24, 
+    marginEnd: 10, 
+    paddingTop: 14,
+    paddingBottom: 14,
+  },
+  actionImage: {
+    width: 24, 
+    height: 24, 
+    marginEnd: 20,
     paddingTop: 14,
     paddingBottom: 14,
   },
